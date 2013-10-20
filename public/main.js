@@ -7,9 +7,10 @@ var timeOutvar,
 	ballR,
 	scores;
 	count = 0;
+
 	function print(){
 		console.log('final scores: '+scores);
-		console.log('end');
+		//console.log('end');
 	}
 	function RGB2HTML(red, green, blue)
 	{
@@ -36,12 +37,13 @@ var timeOutvar,
 					scores = scores + (100-ballR);
 
 					console.log("scores : "+ scores);
-
-				}
-				ctx.clearRect(0, 0, canvas.width, canvas.height);
+					ctx.clearRect(0, 0, canvas.width, canvas.height);
 
 				// Restore the transform
 				ctx.restore();
+
+				}
+				
 		
 	}
 
@@ -79,7 +81,7 @@ var timeOutvar,
 		  		timeOutvar = setTimeout(startGame,1000);
 
 		  		count = count+1;
-		  		console.log("Counter: " + count);
+		  		//console.log("Counter: " + count);
 		  	}
 
 	  	
@@ -127,5 +129,4 @@ var getfrontcolor=(function(){
 })();
 
 getfrontcolor.start();
-
 
