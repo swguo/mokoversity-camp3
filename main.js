@@ -1,13 +1,16 @@
 
+
 var gameModule = (function(){
 var timeOutvar,
 	ballx,
 	bally,
-	ballR;
+	ballR,
+	scores;
 	count = 0;
-	function print(){
 
-		console.log('end');
+	function print(){
+		console.log('final scores: '+scores);
+		//console.log('end');
 	}
 	function RGB2HTML(red, green, blue)
 	{
@@ -16,12 +19,13 @@ var timeOutvar,
 	}
 	
 	function start(){
-
+		scores = 0;
 		document.getElementById("main").addEventListener("click",touchEvent,false);
 		
 		startGame();
 	}
 	function touchEvent(evt){
+
 		var x = evt.clientX,
 			y = evt.clientY;
 
@@ -30,16 +34,23 @@ var timeOutvar,
 			var temp = (ballx-x)*(ballx-x)+(bally-y)*(bally-y);
 
 				if(temp<ballR*ballR){
+					scores = scores + (100-ballR);
 
-					console.log("hit ball!!");
+					console.log("scores : "+ scores);
 
 				}
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+				// Restore the transform
+				ctx.restore();
 		
 	}
 
 	function startGame(){
+
+		
 	canvas = document.getElementById('game');
-	canvas.width = 400;
+	canvas.width = 500;
 	canvas.height = 500;
 
 
@@ -66,10 +77,10 @@ var timeOutvar,
 
 		  	}else{
 
-		  		timeOutvar = setTimeout(start,1000);
+		  		timeOutvar = setTimeout(startGame,1000);
 
 		  		count = count+1;
-		  		console.log("Counter: " + count);
+		  		//console.log("Counter: " + count);
 		  	}
 
 	  	
@@ -79,7 +90,7 @@ var timeOutvar,
 
 	  	return{
 
-	  		print: print,
+	  		
 	  		start: start
 	  	}
 
