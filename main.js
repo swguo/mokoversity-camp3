@@ -1,6 +1,9 @@
 
 var gameModule = (function(){
 var timeOutvar,
+	ballx,
+	bally,
+	ballR;
 	count = 0;
 	function print(){
 
@@ -11,9 +14,7 @@ var timeOutvar,
 	    var decColor = red + 256 * green + 65536 * blue;
 	    return "#"+decColor.toString(16);
 	}
-	canvas = document.getElementById('game');
-	canvas.width = 400;
-	canvas.height = 320;
+	
 	function start(){
 
 		document.getElementById("main").addEventListener("click",touchEvent,false);
@@ -23,25 +24,40 @@ var timeOutvar,
 	function touchEvent(evt){
 		var x = evt.clientX,
 			y = evt.clientY;
-		console.log("("+x+",",y+")");
+
+			console.log("click");
+
+			var temp = (ballx-x)*(ballx-x)+(bally-y)*(bally-y);
+
+				if(temp<ballR*ballR){
+
+					console.log("hit ball!!");
+
+				}
+		
 	}
 
 	function startGame(){
+	canvas = document.getElementById('game');
+	canvas.width = 400;
+	canvas.height = 500;
+
+
 		var r=Math.floor(Math.random()*255);
 		var g=Math.floor(Math.random()*255);
 		var b=Math.floor(Math.random()*255);
 		console.log(RGB2HTML(r,g,b));
 		var c=RGB2HTML(r,g,b);
-		var  ballx = Math.floor(Math.random()*300),
-		 bally = Math.floor(Math.random()*500),
-		 ballz = Math.floor(Math.random()*100);
+		 ballx = Math.floor(Math.random()*300);
+		 bally = Math.floor(Math.random()*500);
+		 ballR = Math.floor(Math.random()*100);
  		ctx = canvas.getContext('2d');
 
 	  		
 	  		ctx.fillStyle = c;
 	  		
 	  		ctx.beginPath();
-	  		ctx.arc(ballx,bally,ballz,0,Math.PI*2,true);
+	  		ctx.arc(ballx,bally,ballR,0,Math.PI*2,true);
 	  		ctx.fill();
 
 	  		if(count>=10){
