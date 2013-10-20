@@ -14,8 +14,19 @@ var timeOutvar,
 	canvas = document.getElementById('game');
 	canvas.width = 400;
 	canvas.height = 320;
-
 	function start(){
+
+		document.getElementById("main").addEventListener("click",touchEvent,false);
+		
+		startGame();
+	}
+	function touchEvent(evt){
+		var x = evt.clientX,
+			y = evt.clientY;
+		console.log("("+x+",",y+")");
+	}
+
+	function startGame(){
 		var r=Math.floor(Math.random()*255);
 		var g=Math.floor(Math.random()*255);
 		var b=Math.floor(Math.random()*255);
